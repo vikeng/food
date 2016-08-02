@@ -14,7 +14,6 @@ $this->title = 'My Yii Application';
         <li><?= Html::a('Модуль "Блюда и ингредиенты"', Url::to(['/food']), ['target' => 'blank']); ?></li>
         <li><?= Html::a('Блюда', Url::to(['/food/food']), ['target' => 'blank']); ?></li>
         <li><?= Html::a('Ингредиенты', Url::to(['/food/ingredients']), ['target' => 'blank']); ?></li>
+        <li><?= Html::a('Состав блюд', Url::to(['/food/foodingredient'])); ?></li>
     </ul>
-
-
 </div>

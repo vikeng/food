@@ -52,7 +52,7 @@ class Ingredients extends \yii\db\ActiveRecord
     {
         return [
             'id'     => 'ID',
-            'name'   => 'Name',
+            'name'   => 'Название',
             'hidden' => 'Hidden',
         ];
     }
@@ -73,4 +73,18 @@ class Ingredients extends \yii\db\ActiveRecord
         return $this->hasMany(Food::className(), ['id' => 'food_id'])->viaTable('{{%food_ingredient}}',
             ['ingredient_id' => 'id']);
     }
+
+    /*
+    * Получение списка блюд
+    */
+
+    public static function getListIngredients()
+    {
+        $ingredients = [];
+        foreach (Ingredients::find()->all() as $ingredient) {
+            $ingredients[$ingredient->id] = $ingredient->name;
+        }
+        return $ingredients;
+    }
+
 }

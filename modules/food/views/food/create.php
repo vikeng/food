@@ -7,7 +7,8 @@ use yii\helpers\Html;
 /* @var $model app\modules\food\models\Food */
 
 $this->title = 'Create Food';
-$this->params['breadcrumbs'][] = ['label' => 'Foods', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Модуль', 'url' => ['/food']];
+$this->params['breadcrumbs'][] = ['label' => 'Список блюд', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="food-create">

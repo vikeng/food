@@ -40,8 +40,8 @@ class Food extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
+            'id'   => 'ID',
+            'name' => 'Название',
         ];
     }
 
@@ -58,13 +58,39 @@ class Food extends \yii\db\ActiveRecord
      */
     public function getIngredients()
     {
-        return $this->hasMany(Ingredients::className(), ['id' => 'ingredient_id'])->viaTable('{{%food_ingredient}}', ['food_id' => 'id']);
+        return $this->hasMany(Ingredients::className(), ['id' => 'ingredient_id'])->viaTable('{{%food_ingredient}}',
+            ['food_id' => 'id']);
     }
+
+    public function getListIngradients(){
+        $ingredients=[];
+        foreach($this->ingredients as $ingredient){
+            $ingredients[]=$ingredient->name;
+
+        }
+        return implode(', ',$ingredients);
+
+    }
+
+    /*
+     * Получение списка блюд
+     */
+
+    public static function getListFoods()
+    {
+        $foods = [];
+        foreach (Food::find()->all() as $food) {
+            $foods[$food->id]=$food->name;
+        }
+        return $foods;
+    }
+
 
     /*
      * Получение скрытый или нет
      */
-    public function getHidden(){
+    public function getHidden()
+    {
 
         return false;
     }

@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 use app\modules\food\models\Ingredients;
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Модуль', 'url' => ['/food']];
 $this->params['breadcrumbs'][] = ['label' => 'Ingredients', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

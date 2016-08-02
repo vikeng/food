@@ -9,6 +9,7 @@ use yii\grid\GridView;
 use app\modules\food\models\Ingredients;
 
 $this->title = 'Ingredients';
+$this->params['breadcrumbs'][] = ['label' => 'Модуль', 'url' => ['/food']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ingredients-index">

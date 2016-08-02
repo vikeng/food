@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\food\models\Food */
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Модуль', 'url' => ['/food']];
 $this->params['breadcrumbs'][] = ['label' => 'Foods', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -30,6 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
+            [
+                'label'=>'Состав',
+                'value'=>$model->listIngradients,
+            ]
         ],
     ]) ?>
 
