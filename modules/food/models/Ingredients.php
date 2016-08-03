@@ -81,11 +81,6 @@ class Ingredients extends \yii\db\ActiveRecord
 
     public static function getListIngredients()
     {
-//        $ingredients = [];
-//        foreach (Ingredients::find()->all() as $ingredient) {
-//            $ingredients[$ingredient->id] = $ingredient->name;
-//        }
-//        return $ingredients;
         return ArrayHelper::map(Ingredients::find()->all(),'id','name');
     }
 

@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'label' => 'hid',
-                'value' => isset(Ingredients::$hidden_status[$model->hidden])?Ingredients::$hidden_status[$model->hidden]:'',
+                'value' => isset(Ingredients::$hidden_status[$model->hidden]) ? Ingredients::$hidden_status[$model->hidden] : '',
             ],
         ],
     ]) ?>

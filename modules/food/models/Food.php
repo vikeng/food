@@ -64,13 +64,14 @@ class Food extends \yii\db\ActiveRecord
             ['food_id' => 'id']);
     }
 
-    public function getListIngradients(){
-        $ingredients=[];
-        foreach($this->ingredients as $ingredient){
-            $ingredients[]=$ingredient->name;
+    public function getListIngradients()
+    {
+        $ingredients = [];
+        foreach ($this->ingredients as $ingredient) {
+            $ingredients[] = $ingredient->name;
 
         }
-        return implode(', ',$ingredients);
+        return implode(', ', $ingredients);
 
     }
 
@@ -80,13 +81,7 @@ class Food extends \yii\db\ActiveRecord
 
     public static function getListFoods()
     {
-//        $foods = [];
-//        foreach (Food::find()->all() as $food) {
-//            $foods[$food->id]=$food->name;
-//        }
-//        return $foods;
-        return ArrayHelper::map(Food::find()->all(),'id','name');
-
+        return ArrayHelper::map(Food::find()->all(), 'id', 'name');
     }
 
 
@@ -95,8 +90,16 @@ class Food extends \yii\db\ActiveRecord
      */
     public function getHidden()
     {
+        $hidden = false;
+        if (empty($this->ingredients)) {
+            $hidden = true;
+        }
+        foreach ($this->ingredients as $ingredient) {
+            if ($ingredient->hidden) {
+                $hidden = true;
+            }
+        }
 
-        return false;
+        return $hidden;
     }
-
 }

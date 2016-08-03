@@ -32,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             [
+                'label' => 'Скрытый',
+                'value' => $model->hidden == false ? 'Скрытый' : 'Виден'
+            ],
+            [
                 'label' => 'Состав',
                 'value' => $model->listIngradients,
             ]

@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\modules\food\models\Food;
+
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -19,11 +21,17 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'columns' => [
+        'columns'      => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'name',
+            [
+                'label' => 'Скрытый?',
+                'value' => function (Food $data) {
+                    return $data->hidden == false ? 'Скрытый' : 'Виден';
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
