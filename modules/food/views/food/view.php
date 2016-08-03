@@ -26,7 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <?php
+    ?>
     <?= DetailView::widget([
         'model'      => $model,
         'attributes' => [
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'label' => 'Скрытый',
-                'value' => Ingredients::$hidden_status[$model->hidden]
+                'value' => Ingredients::$hidden_status[$model->hidden],
             ],
             [
                 'label' => 'Состав',
@@ -42,7 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]) ?>
+    <?php
 
+    var_dump($model->hidden);
+    ?>
     <?= $this->render('_form_add', ['model' => $model]); ?>
 
 </div>

@@ -14,6 +14,8 @@ use yii\helpers\ArrayHelper;
  *
  * @property FoodIngredient[] $foodIngredients
  * @property Ingredients[] $ingredients
+ *
+ * @property integer $hidden
  */
 class Food extends \yii\db\ActiveRecord
 {
@@ -90,13 +92,10 @@ class Food extends \yii\db\ActiveRecord
      */
     public function getHidden()
     {
-        $hidden = false;
-        if (empty($this->ingredients)) {
-            $hidden = true;
-        }
+        $hidden = 1; // Не скрыт
         foreach ($this->ingredients as $ingredient) {
-            if ($ingredient->hidden) {
-                $hidden = true;
+            if ($ingredient->hidden==0) {
+                $hidden = 0;
             }
         }
 

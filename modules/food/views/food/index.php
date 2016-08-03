@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Скрытый?',
                 'value' => function (Food $data) {
-                    return Ingredients::$hidden_status[$data->hidden];
+                    return $data->hidden==0? 'Скрыт':'Виден';
                 }
             ],
 
