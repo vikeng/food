@@ -28,6 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             [
+                'label' => 'Состав',
+                'value' => function (Food $data) {
+                    return $data->getListIngradients();
+                }
+            ],
+            [
                 'label' => 'Скрытый?',
                 'value' => function (Food $data) {
                     return Ingredients::$hidden_status[$data->hidden];

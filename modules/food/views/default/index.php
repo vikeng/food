@@ -24,9 +24,9 @@ use yii\data\ArrayDataProvider;
     ?>
 
     <?php
-    if($listFoods===null) {
+    if ($listFoods === null) {
         echo $msg;
-    }else{
+    } else {
         echo GridView::widget([
             'dataProvider' => $listFoods,
             'columns'      => [
@@ -35,9 +35,7 @@ use yii\data\ArrayDataProvider;
                 [
                     'label' => 'Состав',
                     'value' => function (Food $data) {
-
-//                        return $data->name;
-                    return $data->getListIngradients();
+                        return $data->getListIngradients();
                     }
                 ]
             ]

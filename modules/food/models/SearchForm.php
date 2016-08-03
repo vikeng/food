@@ -77,21 +77,53 @@ class SearchForm extends Model
      */
     public function search()
     {
-        $msg='';
+        $msg = '';
         // Блюда в которых есть хотя бы один продукт
-        $foods = Food::find()->joinWith('ingredients')->where(['food.ingredients.id'=>$this->_ingredients])->all();
+        $foods = Food::find()->joinWith('ingredients')->where(['food.ingredients.id' => $this->_ingredients])->all();
 //        $food_ing=[];
-        $search_food=[];
-        foreach($foods as $food){
-            $food_ing=array_keys(ArrayHelper::map($food->ingredients,'id','name'));
-            $search_food[$food->id]=count(array_intersect($food_ing,$this->_ingredients));
+        $search_food = [];
+        foreach ($foods as $food) {
+            $food_ing = array_keys(ArrayHelper::map($food->ingredients, 'id', 'name'));
+            $per = array_intersect($food_ing, $this->_ingredients);
+            $search_food[$food->id] = count(array_intersect($food_ing, $this->_ingredients));
         }
         arsort($search_food);
+        list($food_id, $max_count) = each($search_food);
+        reset($search_food);
+        $search_id = [];
+        if ($max_count == count($this->_ingredients)) {
+            foreach ($search_food as $food_id => $count) {
+                if ($count == $max_count) {
+                    $search_id[] = $food_id;
+                }
+            }
+        } else {
+            foreach ($search_food as $food_id => $count) {
+                if ($count > 1) {
+                    $search_id[] = $food_id;
+                }
+            }
+        }
 
-        $foods=Food::findAll($search_food);
+        $res_foods = [];
+        if (count($search_id) > 0) {
+            foreach ($search_id as $id) {
+                foreach ($foods as $food) {
+                    if ($food->id == $id) {
+                        $res_foods[] = $food;
+                    }
+                }
+            }
+        } else {
+            $msg = 'Ничего не найдено';
+        }
+        /*
+         * Сортировка
+         */
 
-        return[
-            new ArrayDataProvider(['allModels'=>$foods]),
+
+        return [
+            new ArrayDataProvider(['allModels' => $res_foods]),
             $msg
         ];
 
