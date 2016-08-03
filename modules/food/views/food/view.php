@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\modules\food\models\Ingredients;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\food\models\Food */
@@ -33,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'label' => 'Скрытый',
-                'value' => $model->hidden == false ? 'Скрытый' : 'Виден'
+                'value' => Ingredients::$hidden_status[$model->hidden]
             ],
             [
                 'label' => 'Состав',

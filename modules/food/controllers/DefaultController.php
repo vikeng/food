@@ -18,13 +18,14 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $searchModel = new SearchForm();
-        $listFoods = [];
+        $listFoods = null;
+        $msg='';
         if ($searchModel->load(Yii::$app->request->post())) {
             if ($searchModel->validate()) {
-                $listFoods = $searchModel->search();
+                list($listFoods,$msg) = $searchModel->search();
             }
         }
 
-        return $this->render('index', ['searchModel' => $searchModel, 'listFoods' => $listFoods]);
+        return $this->render('index', ['searchModel' => $searchModel, 'listFoods' => $listFoods,'msg'=>$msg]);
     }
 }

@@ -2,10 +2,14 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\grid\GridView;
+use app\modules\food\models\Food;
+use yii\data\ArrayDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\food\models\SearchForm */
-/* @var $listFoods array */
+/* @var $listFoods \yii\data\ArrayDataProvider */
+/* @var $msg string */
 
 ?>
 <div class="food-default-index">
@@ -17,6 +21,28 @@ use yii\helpers\Url;
     </ul>
     <?=
     $this->render('_search_form', ['searchModel' => $searchModel]);
+    ?>
+
+    <?php
+    if($listFoods===null) {
+        echo $msg;
+    }else{
+        echo GridView::widget([
+            'dataProvider' => $listFoods,
+            'columns'      => [
+                'id',
+                'name',
+                [
+                    'label' => 'Состав',
+                    'value' => function (Food $data) {
+
+//                        return $data->name;
+                    return $data->getListIngradients();
+                    }
+                ]
+            ]
+        ]);
+    }
 
     ?>
 </div>

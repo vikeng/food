@@ -3,6 +3,8 @@ namespace app\modules\food\models;
 
 use Yii;
 use yii\base\Model;
+use yii\data\ArrayDataProvider;
+use yii\helpers\ArrayHelper;
 
 class SearchForm extends Model
 {
@@ -75,7 +77,24 @@ class SearchForm extends Model
      */
     public function search()
     {
-        return '123';
+        $msg='';
+        // Блюда в которых есть хотя бы один продукт
+        $foods = Food::find()->joinWith('ingredients')->where(['food.ingredients.id'=>$this->_ingredients])->all();
+//        $food_ing=[];
+        $search_food=[];
+        foreach($foods as $food){
+            $food_ing=array_keys(ArrayHelper::map($food->ingredients,'id','name'));
+            $search_food[$food->id]=count(array_intersect($food_ing,$this->_ingredients));
+        }
+        arsort($search_food);
+
+        $foods=Food::findAll($search_food);
+
+        return[
+            new ArrayDataProvider(['allModels'=>$foods]),
+            $msg
+        ];
+
     }
 
 

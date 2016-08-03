@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\modules\food\models\Food;
+use app\modules\food\models\Ingredients;
 
 
 /* @var $this yii\web\View */
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Скрытый?',
                 'value' => function (Food $data) {
-                    return $data->hidden == false ? 'Скрытый' : 'Виден';
+                    return Ingredients::$hidden_status[$data->hidden];
                 }
             ],
 

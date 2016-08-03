@@ -76,12 +76,21 @@ class Ingredients extends \yii\db\ActiveRecord
     }
 
     /*
-    * Получение списка блюд
+    * Получение списка ингредиентов
     */
 
     public static function getListIngredients()
     {
-        return ArrayHelper::map(Ingredients::find()->all(),'id','name');
+        return ArrayHelper::map(Ingredients::find()->all(), 'id', 'name');
+    }
+
+    /*
+    * Получение списка видимых ингредиентов
+    */
+
+    public static function getListVIngredients()
+    {
+        return ArrayHelper::map(Ingredients::findAll(['hidden' => self::VISIBLE]), 'id', 'name');
     }
 
 }

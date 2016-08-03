@@ -9,7 +9,7 @@ use app\modules\food\models\Ingredients;
 /* @var $form ActiveForm */
 
 
-$listIngredients = Ingredients::getListIngredients();
+$listIngredients = Ingredients::getListVIngredients();
 array_unshift($listIngredients, 'Не выбран');
 
 ?>
