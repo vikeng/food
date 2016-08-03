@@ -117,10 +117,6 @@ class SearchForm extends Model
         } else {
             $msg = 'Ничего не найдено';
         }
-        /*
-         * Сортировка
-         */
-
 
         return [
             new ArrayDataProvider(['allModels' => $res_foods]),

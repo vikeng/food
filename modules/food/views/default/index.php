@@ -24,7 +24,7 @@ use yii\data\ArrayDataProvider;
     ?>
 
     <?php
-    if ($listFoods === null) {
+    if (!empty($msg) || $listFoods === null) {
         echo $msg;
     } else {
         echo GridView::widget([
@@ -41,6 +41,5 @@ use yii\data\ArrayDataProvider;
             ]
         ]);
     }
-
     ?>
 </div>
