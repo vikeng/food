@@ -2,7 +2,9 @@
 
 namespace app\modules\food\controllers;
 
+use Yii;
 use yii\web\Controller;
+use app\modules\food\models\SearchForm;
 
 /**
  * Default controller for the `food` module
@@ -15,6 +17,14 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new SearchForm();
+        $listFoods = [];
+        if ($searchModel->load(Yii::$app->request->post())) {
+            if ($searchModel->validate()) {
+                $listFoods = $searchModel->search();
+            }
+        }
+
+        return $this->render('index', ['searchModel' => $searchModel, 'listFoods' => $listFoods]);
     }
 }
