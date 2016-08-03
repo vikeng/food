@@ -76,6 +76,22 @@ class FoodingredientController extends Controller
     }
 
     /**
+     * Добавление ингредиента к блюду
+     * Если добавлено - переход на страницу просмотра блюда, если нет - к списку блюд
+     * @return mixed
+     */
+    public function actionAdd()
+    {
+        $model = new FoodIngredient();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['/food/food/view', 'id' => $model->food_id]);
+        }
+        return $this->redirect(['/food/food']);
+    }
+
+
+    /**
      * Updates an existing FoodIngredient model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $food_id

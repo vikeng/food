@@ -3,6 +3,8 @@
 namespace app\modules\food\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * This is the model class for table "{{%food}}".
@@ -78,11 +80,13 @@ class Food extends \yii\db\ActiveRecord
 
     public static function getListFoods()
     {
-        $foods = [];
-        foreach (Food::find()->all() as $food) {
-            $foods[$food->id]=$food->name;
-        }
-        return $foods;
+//        $foods = [];
+//        foreach (Food::find()->all() as $food) {
+//            $foods[$food->id]=$food->name;
+//        }
+//        return $foods;
+        return ArrayHelper::map(Food::find()->all(),'id','name');
+
     }
 
 

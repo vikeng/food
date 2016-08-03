@@ -8,9 +8,10 @@ use yii\helpers\Url;
     <h1>Блюда и ингредиенты</h1>
     <ul>
         <li><?= Html::a('Блюда', Url::to(['/food/food'])); ?></li>
-        <li><?= Html::a('Ингредиенты', Url::to(['/food/ingredients'])); ?></li>FoodIngredient
+        <li><?= Html::a('Ингредиенты', Url::to(['/food/ingredients'])); ?></li>
         <li><?= Html::a('Состав блюд', Url::to(['/food/foodingredient'])); ?></li>
     </ul>
+
 
     <p>
 
